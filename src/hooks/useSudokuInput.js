@@ -7,13 +7,20 @@ export function useSudokuInput(isActive){
 
     const onSudokuInput = (e) => {
         const {key} = e;
-        debugger;
         if(isActive && range(1,10).includes( parseInt(key) ) ){
             setSudokuInput( key )
         }
     };
 
-    return {currentInput, onSudokuInput};
+    const resetInput = () => {
+        setSudokuInput(null);
+    }
+
+    return {
+        currentInput,
+        onSudokuInput,
+        resetInput
+    };
 }
 
 export default useSudokuInput;
