@@ -4,7 +4,7 @@
   text-align: center;
   display: grid;
   grid-template-columns: 1fr; 
-  grid-template-rows: 80px auto auto; 
+  grid-template-rows: 80px auto; 
   font-family: 'Montserrat', sans-serif;
 }
 

@@ -4,7 +4,7 @@ import useActiveSudokuCell from '../hooks/useActiveSudokuCell';
 import useSudokuInput from '../hooks/useSudokuInput';
 import './Cell.css';
 
-export const Cell = ({ x, y }) => {
+export const Cell = ({ x, y, gameValue }) => {
 
     let active = '';
     const activeCell = useActiveSudokuCell();
@@ -28,8 +28,9 @@ export const Cell = ({ x, y }) => {
             data-name="sudoku-cell"
             data-x={x}
             data-y={y}
+            data-gamevalue={gameValue}
             className={'cell'+active}>
-            <span className='cell-value'>{currentInput}</span>
+            <span className='cell-value'>{`${currentInput||''}|${gameValue}`}</span>
         </span>
     );
 }
