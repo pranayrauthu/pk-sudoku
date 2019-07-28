@@ -1,0 +1,20 @@
+.cell {
+    border: 1px solid gray;
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+}
+
+.cell:nth-child(3n) {
+    /* margin-right: 3px; */
+}
+
+.active {
+    border: 1px solid blue;
+}
+
+.cell-value {
+    position: relative;
+    top: 9px;
+}
