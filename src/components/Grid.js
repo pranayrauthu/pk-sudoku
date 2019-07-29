@@ -62,8 +62,11 @@ export const Grid = () => {
     });
 
     function onNewGameClick(){
-        refreshGame();
-        setCheckResult(false);
+        // TODO: Need to implement refreshGame
+        // refreshGame();
+        // setCheckResult(false);
+
+        window.location.reload();
     }
 
     return (
