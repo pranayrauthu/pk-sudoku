@@ -6,10 +6,6 @@
     display: inline-block;
 }
 
-.cell:nth-child(3n) {
-    /* margin-right: 3px; */
-}
-
 .active {
     border: 1px solid blue;
 }
@@ -17,4 +13,12 @@
 .cell-value {
     position: relative;
     top: 9px;
+}
+
+.correct {
+    background-color: #81ffbf;
+}
+
+.wrong {
+    background-color: #ff7676;
 }

@@ -6,7 +6,8 @@ import {
     concat,
     tail,
     head,
-    flatMap
+    flatMap,
+    sampleSize
 } from 'lodash';
 
 function createGame() {
@@ -47,7 +48,7 @@ function createGame() {
     );
     const row9 = flatMap(row9Chunks);
 
-    return [
+    let game = [
         row1,
         row2,
         row3,
@@ -57,12 +58,31 @@ function createGame() {
         row7,
         row8,
         row9
-    ]
+    ];
+
+    debugger;
+
+    const cellGrid = range(0,9)
+        .map( x => (range(0, 9).map( y => ( `${x}${y}` ) )) );
+
+    const randomCellGrid = sampleSize(flatMap(cellGrid), 28);
+
+    game = game.map( (gameRow, x) => (
+        gameRow.map( (value, y) => ({
+            value,
+            showValue: randomCellGrid.includes(`${x}${y}`)
+        }) )
+    ) );
+
+    return game;       
+    
 }
+
+const initialGame = createGame();
 
 
 export function useSudokuGenerator() {
-    const [game, setGame] = useState(createGame());
+    const [game, setGame] = useState(initialGame);
 
     const refreshGame = () => {
         setGame(createGame());

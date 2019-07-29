@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Fragment, useState } from 'react';
 
 import Cell from './Cell';
 import useSudokuGenerator from './../hooks/useSudokuGenerator';
@@ -9,14 +9,62 @@ export const Grid = () => {
 
 
     const { game, refreshGame } = useSudokuGenerator();
+    const [checkResult, setCheckResult] = useState(false);
 
-    const cells = game.map((gameRow, x) => (
-        <div key={x} className='sudoku-grid-row'>
-            {gameRow.map((cellGameValue, y) => (
-                <Cell x={x} y={y} key={y} gameValue={cellGameValue}></Cell>
-            ))}
-        </div>
-    ));
+    const cells = game.map((gameRow, x) => {
+
+        if ((x + 1) % 3 === 0) {
+            return (
+                <Fragment key={x}>
+                    <div className='sudoku-grid-row'>
+                        {gameRow.map(({ value, showValue }, y) => {
+
+                            if ((y + 1) % 3 === 0) {
+                                return (<Fragment key={y}>
+                                    <Cell
+                                        x={x}
+                                        y={y}
+                                        gameValue={value}
+                                        showValue={showValue}
+                                        checkResult={checkResult}>
+                                    </Cell>
+                                    <span className='gutter'></span>
+                                </Fragment>)
+                            }
+
+                            return (
+                                <Cell x={x} y={y} key={y} gameValue={value} showValue={showValue} checkResult={checkResult}></Cell>
+                            );
+                        })}
+                    </div>
+                    <div className='gutter'></div>
+                </Fragment>
+            );
+        }
+
+        return (
+            <div key={x} className='sudoku-grid-row'>
+                {gameRow.map(({ value, showValue }, y) => {
+
+                    if ((y + 1) % 3 === 0) {
+                        return (<Fragment key={y}>
+                            <Cell x={x} y={y} gameValue={value} showValue={showValue} checkResult={checkResult}></Cell>
+                            <span className='gutter'></span>
+                        </Fragment>);
+                    }
+
+                    return (
+                        <Cell x={x} y={y} key={y} gameValue={value} showValue={showValue} checkResult={checkResult}></Cell>
+                    );
+                })}
+            </div>
+        );
+    });
+
+    function onNewGameClick(){
+        refreshGame();
+        setCheckResult(false);
+    }
 
     return (
         <div>
@@ -25,10 +73,10 @@ export const Grid = () => {
             </div>
             <div>
                 <div>The Game is ON</div>
-                <button onClick={refreshGame}>new game</button>
-                <button>check</button>
+                <button onClick={onNewGameClick}>new game</button>
+                <button onClick={() => setCheckResult(true)}>check</button>
             </div>
-        </div>
+        </div >
     );
 }
 

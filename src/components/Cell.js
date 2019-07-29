@@ -4,21 +4,27 @@ import useActiveSudokuCell from '../hooks/useActiveSudokuCell';
 import useSudokuInput from '../hooks/useSudokuInput';
 import './Cell.css';
 
-export const Cell = ({ x, y, gameValue }) => {
+export const Cell = ({ x, y, gameValue, showValue, checkResult }) => {
 
     const [stateGameValue, setStateGameValue] = useState(gameValue);
 
     let active = '';
+    let reveal = '';
     const activeCell = useActiveSudokuCell();
     const isActive = x + '' === activeCell.x && y + '' === activeCell.y;
     const {
         currentInput,
-        onSudokuInput,
-        resetInput       
+        onSudokuInput   
     } = useSudokuInput(isActive);
     if(isActive){
         active = ' active';
     }
+
+    useEffect(() => {
+        if(showValue){
+            onSudokuInput({ key: gameValue }, true);
+        }
+    }, [showValue]);
 
     useEffect(() => {
 
@@ -28,13 +34,14 @@ export const Cell = ({ x, y, gameValue }) => {
         }
 
     });
-
-    useEffect(() => {
-        if(stateGameValue !== gameValue){
-            setStateGameValue(gameValue);
-            resetInput();
+    
+    if(checkResult){
+        if( gameValue == currentInput ){
+            reveal = ' correct';
+        } else {
+            reveal = ' wrong';
         }
-    }, [stateGameValue, gameValue, resetInput])
+    }
 
     return (
         <span
@@ -42,8 +49,8 @@ export const Cell = ({ x, y, gameValue }) => {
             data-x={x}
             data-y={y}
             data-gamevalue={gameValue}
-            className={'cell'+active}>
-            <span className='cell-value'>{`${currentInput||''}|${gameValue}`}</span>
+            className={'cell'+active+reveal}>
+            <span className='cell-value'>{currentInput}</span>
         </span>
     );
 }
