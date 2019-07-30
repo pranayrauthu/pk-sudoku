@@ -22,3 +22,7 @@
 .wrong {
     background-color: #ff7676;
 }
+
+.active-bg {
+    background-color: azure;
+}

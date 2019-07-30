@@ -1,12 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 
 import useActiveSudokuCell from '../hooks/useActiveSudokuCell';
 import useSudokuInput from '../hooks/useSudokuInput';
 import './Cell.css';
 
 export const Cell = ({ x, y, gameValue, showValue, checkResult }) => {
-
-    const [stateGameValue, setStateGameValue] = useState(gameValue);
 
     let active = '';
     let reveal = '';
@@ -40,6 +38,10 @@ export const Cell = ({ x, y, gameValue, showValue, checkResult }) => {
             reveal = ' correct';
         } else {
             reveal = ' wrong';
+        }
+    } else {
+        if( isActive ){
+            reveal = ' active-bg'
         }
     }
 
