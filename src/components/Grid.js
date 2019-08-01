@@ -74,10 +74,16 @@ export const Grid = () => {
             <div className='sudoku-grid'>
                 {cells}
             </div>
-            <div>
+            <div className='game-ctrl-section'>
                 <div>The Game is ON</div>
-                <button onClick={onNewGameClick}>new game</button>
-                <button onClick={() => setCheckResult(true)}>check</button>
+                <button
+                    onClick={onNewGameClick}
+                    className='game-ctrl-btn'
+                >new game</button>
+                <button
+                    onClick={() => setCheckResult(true)}
+                    className='game-ctrl-btn'
+                >check</button>
             </div>
         </div >
     );

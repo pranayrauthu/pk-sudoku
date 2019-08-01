@@ -60,8 +60,6 @@ function createGame() {
         row9
     ];
 
-    debugger;
-
     const cellGrid = range(0,9)
         .map( x => (range(0, 9).map( y => ( `${x}${y}` ) )) );
 

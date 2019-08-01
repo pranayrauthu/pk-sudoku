@@ -20,18 +20,22 @@ export const Cell = ({ x, y, gameValue, showValue, checkResult }) => {
 
     useEffect(() => {
         if(showValue){
-            onSudokuInput({ key: gameValue }, true);
+            onSudokuInput({ key: gameValue }, true, checkResult);
         }
     }, [showValue]);
 
     useEffect(() => {
 
-        window.addEventListener('keydown', onSudokuInput);
-        return () => {
-            window.removeEventListener('keydown', onSudokuInput);
+        const onKeyDown = (e) => {
+            onSudokuInput(e, false, checkResult);
         }
 
-    });
+        window.addEventListener('keydown', onKeyDown);
+        return () => {
+            window.removeEventListener('keydown', onKeyDown);
+        }
+
+    }, [checkResult]);
     
     if(checkResult){
         if( gameValue == currentInput ){
