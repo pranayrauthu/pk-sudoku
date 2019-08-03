@@ -4,7 +4,7 @@
   text-align: center;
   display: grid;
   grid-template-columns: 1fr; 
-  grid-template-rows: 80px auto; 
+  grid-template-rows: 80px auto auto; 
   font-family: 'Montserrat', sans-serif;
 }
 
@@ -16,4 +16,8 @@ main {
   grid-row-gap: 0px;
 
   justify-self: center;
+}
+
+.footer {
+  margin-top: 30px;
 }
