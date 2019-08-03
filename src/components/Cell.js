@@ -22,7 +22,7 @@ export const Cell = ({ x, y, gameValue, showValue, checkResult }) => {
         if(showValue){
             onSudokuInput({ key: gameValue }, true, checkResult);
         }
-    }, [showValue]);
+    }, [showValue, onSudokuInput, checkResult, gameValue ]);
 
     useEffect(() => {
 
@@ -35,7 +35,7 @@ export const Cell = ({ x, y, gameValue, showValue, checkResult }) => {
             window.removeEventListener('keydown', onKeyDown);
         }
 
-    }, [checkResult]);
+    }, [checkResult, onSudokuInput]);
     
     if(checkResult){
         if( gameValue == currentInput ){
