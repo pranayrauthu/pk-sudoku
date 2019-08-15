@@ -4,7 +4,7 @@ import { get, range, isEqual } from 'lodash';
 
 import Cell from './Cell';
 import { selectGameData } from './../redux/selectors';
-import { endGame, inputValue } from './../redux/actions';
+import { endGame, inputValue, resetInput } from './../redux/actions';
 
 import './Grid.css';
 
@@ -95,6 +95,10 @@ export const Grid = () => {
         () => dispatch(endGame()),
         [dispatch]
     );
+    const onClearClick = useCallback(
+        () => dispatch(resetInput()),
+        [dispatch]
+    );
     useEffect(
         () => {
             function onKeyDown(e) {
@@ -125,6 +129,10 @@ export const Grid = () => {
                     onClick={onNewGameClick}
                     className='game-ctrl-btn'
                 >new game</button>
+                <button
+                    onClick={onClearClick}
+                    className='game-ctrl-btn'
+                >clear</button>
                 <button
                     onClick={onCheckClick}
                     className='game-ctrl-btn'

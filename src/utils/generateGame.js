@@ -65,7 +65,7 @@ function generateGame() {
     const cellGrid = range(0,9)
         .map( x => (range(0, 9).map( y => ( `${x}${y}` ) )) );
 
-    const randomCellGrid = sampleSize(flatMap(cellGrid), 28);
+    const randomCellGrid = sampleSize(flatMap(cellGrid), 29);
 
     game = game.map( (gameRow, x) => (
         gameRow.map( (value, y) => ({
