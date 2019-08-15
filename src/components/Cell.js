@@ -1,7 +1,9 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useCallback } from 'react';
+import { useDispatch } from 'react-redux';
 
 import useActiveSudokuCell from '../hooks/useActiveSudokuCell';
 import useSudokuInput from '../hooks/useSudokuInput';
+import { changeSelection } from './../redux/actions';
 import './Cell.css';
 
 export const Cell = ({ x, y, gameValue, showValue, checkResult }) => {
@@ -49,13 +51,27 @@ export const Cell = ({ x, y, gameValue, showValue, checkResult }) => {
         }
     }
 
+    /**
+     * REDUX REGION - START
+     */
+    const dispatch = useDispatch();
+    const onCellClick = useCallback(
+        () => dispatch(changeSelection({x,y})),
+        [dispatch, x, y]
+    );
+
+    /**
+     * REDUX REGION - END
+     */
+
     return (
         <span
             data-name="sudoku-cell"
             data-x={x}
             data-y={y}
             data-gamevalue={gameValue}
-            className={'cell'+active+reveal}>
+            className={'cell'+active+reveal}
+            onClick={onCellClick}>
             <span className='cell-value'>{currentInput}</span>
         </span>
     );
