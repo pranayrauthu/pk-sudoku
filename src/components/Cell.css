@@ -10,6 +10,10 @@
     border: 1px solid blue;
 }
 
+.hint {
+    font-weight: bold; 
+}
+
 .cell-value {
     position: relative;
     top: 9px;

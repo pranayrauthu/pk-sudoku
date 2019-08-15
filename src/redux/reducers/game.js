@@ -9,7 +9,7 @@ import {
 import generateGame from './../../utils/generateGame';
 
 const initialState = {
-    values: generateGame(),
+    data: generateGame(),
     currentSelection: {
         x: 0,
         y: 0
@@ -24,7 +24,7 @@ const actionMap = {
     }),
     [NEW_GAME]: (state, data) => ({
         ...state,
-        values: data
+        data: data
     }),
     [CHANGE_SELECTION]: (state, data) => ({
         ...state,
@@ -35,12 +35,12 @@ const actionMap = {
             currentSelection: {x,y}
         } = state;
 
-        const newValues = cloneDeep(state.values);
-        newValues[x][y].userInput = data;
+        const newData = cloneDeep(state.data);
+        newData[x][y].userInput = data;
         
         return {
             ...state,
-            values: newValues
+            data: newData
         }
     },
     [RESET_INPUT]: (state) => {
@@ -48,12 +48,12 @@ const actionMap = {
             currentSelection: {x,y}
         } = state;
 
-        const newValues = cloneDeep(state.values);
-        newValues[x][y].userInput = null;
+        const newData = cloneDeep(state.data);
+        newData[x][y].userInput = null;
         
         return {
             ...state,
-            values: newValues
+            data: newData
         }
     }
 }
