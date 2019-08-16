@@ -1,10 +1,11 @@
-import React, { Fragment, useCallback, useEffect } from 'react';
+import React, { Fragment, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { get, range, isEqual } from 'lodash';
 
 import Cell from './Cell';
+import GameControls from './GameControls';
 import { selectGameData } from './../redux/selectors';
-import { endGame, inputValue, resetInput } from './../redux/actions';
+import { inputValue } from './../redux/actions';
 
 import './Grid.css';
 
@@ -82,23 +83,7 @@ export const Grid = () => {
         );
     });
 
-    function onNewGameClick() {
-        // TODO: Need to implement refreshGame
-        // refreshGame();
-        // setCheckResult(false);
-
-        window.location.reload();
-    }
-
     const dispatch = useDispatch();
-    const onCheckClick = useCallback(
-        () => dispatch(endGame()),
-        [dispatch]
-    );
-    const onClearClick = useCallback(
-        () => dispatch(resetInput()),
-        [dispatch]
-    );
     useEffect(
         () => {
             function onKeyDown(e) {
@@ -123,21 +108,7 @@ export const Grid = () => {
             <div className='sudoku-grid'>
                 {cells}
             </div>
-            <div className='game-ctrl-section'>
-                <div>The Game is ON</div>
-                <button
-                    onClick={onNewGameClick}
-                    className='game-ctrl-btn'
-                >new game</button>
-                <button
-                    onClick={onClearClick}
-                    className='game-ctrl-btn'
-                >clear</button>
-                <button
-                    onClick={onCheckClick}
-                    className='game-ctrl-btn'
-                >check</button>
-            </div>
+            <GameControls/>
         </div >
     );
 }

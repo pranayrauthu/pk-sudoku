@@ -24,7 +24,8 @@ const actionMap = {
     }),
     [NEW_GAME]: (state, data) => ({
         ...state,
-        data: data
+        data: data,
+        gameStatus: "active"
     }),
     [CHANGE_SELECTION]: (state, data) => ({
         ...state,
@@ -32,11 +33,14 @@ const actionMap = {
     }),
     [INPUT_VALUE]: (state, data) => {
         const {
-            currentSelection: {x,y}
+            currentSelection: {x,y},
+            gameStatus
         } = state;
 
         const newData = cloneDeep(state.data);
-        newData[x][y].userInput = data;
+        if(gameStatus === 'active'){
+            newData[x][y].userInput = data;
+        }
         
         return {
             ...state,
@@ -45,11 +49,14 @@ const actionMap = {
     },
     [RESET_INPUT]: (state) => {
         const {
-            currentSelection: {x,y}
+            currentSelection: {x,y},
+            gameStatus
         } = state;
 
         const newData = cloneDeep(state.data);
-        newData[x][y].userInput = null;
+        if(gameStatus === 'active'){
+            newData[x][y].userInput = null;
+        }
         
         return {
             ...state,
