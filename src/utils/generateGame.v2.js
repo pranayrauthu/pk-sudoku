@@ -7,7 +7,7 @@ import {
 } from 'lodash';
 
 const ZERO_TO_EIGHT = range(0, 9);
-const ONE_TO_NINE = range(1, 10);
+export const ONE_TO_NINE = range(1, 10);
 const GROUP_INDEX = chunk(ZERO_TO_EIGHT, 3);
 
 class GameGenerator {
@@ -20,6 +20,12 @@ class GameGenerator {
         }
         return this._flatGameCells;
     }
+    /**
+     * 
+     * @param {Number} rowIndex 
+     * @param {Number} columnIndex 
+     * @returns {Address}
+     */
     _findGroupAddress(rowIndex, columnIndex) {
         return GROUP_INDEX.reduce((acc, cur, index) => {
             if (cur.includes(rowIndex)) {
@@ -209,6 +215,10 @@ class Address {
     }
 }
 
+/**
+ * 
+ * @returns {Array}
+ */
 export default function (){
     let game = (new GameGenerator()).generateGame(true);
     return game;

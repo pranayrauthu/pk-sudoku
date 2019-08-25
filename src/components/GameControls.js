@@ -1,6 +1,10 @@
 import React, { useCallback } from 'react';
 import { useDispatch } from 'react-redux';
 
+import InputNumbers from './InputNumbers';
+
+import './GameControls.css';
+
 import {
     endGame,
     resetInput,
@@ -28,6 +32,7 @@ const GameControls = () => {
 
     return (
         <div className='game-ctrl-section'>
+            <InputNumbers />
             <div>The Game is ON</div>
             <button
                 onClick={onNewGameClick}

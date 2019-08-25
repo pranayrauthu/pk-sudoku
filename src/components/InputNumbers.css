@@ -1,0 +1,22 @@
+
+.input-values {
+    margin: 10px;
+}
+
+.input-value-box {
+    cursor: pointer;
+    width: 40px;
+    height: 40px;
+    display: inline-block;
+    margin: 1px;
+    background-color: white;
+}
+
+.input-value-box:focus {
+    outline: 0;
+}
+
+.input-value {
+    position: relative;
+    top: 2px;
+}
