@@ -6,7 +6,7 @@ import {
     INPUT_VALUE,
     RESET_INPUT
 } from '../action-types';
-import generateGame from './../../utils/generateGame';
+import generateGame from './../../utils/generateGame.v2';
 
 const initialState = {
     data: generateGame(),
