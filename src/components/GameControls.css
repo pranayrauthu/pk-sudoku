@@ -1,0 +1,12 @@
+.game-ctrl-section {
+    margin-top: 25px;
+}
+
+.game-ctrl-btn {
+    background-color: white;
+    margin: 5px;
+}
+
+.game-ctrl-btn:focus {
+    outline: 0;
+}
